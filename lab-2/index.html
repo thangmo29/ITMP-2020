@@ -8,29 +8,59 @@
 </head>
 <body>
 	<div id="app">
+		About
+		<h3>Team_id :{{team.team_id}}</h3>
+		<h3>Name :{{team.name}}</h3>
+		<h3>Tag :{{team.tag}}</h3>
+		<h3>Rating :{{team.rating}}</h3>
+		<h3>Wins :{{team.wins}}</h3>
+		<h3>Losses :{{team.losses}}</h3>
+
+		User
+		<h2 v-for="t in team">{{t.name}}</h2>
 		
 	</div>
 	
 
 	<script>
-		fetch('https://jsonplaceholder.typicode.com/users')
-		.then(response => response.json())
-		.then(json => {console.log(json)})
+		fetch('https://api.opendota.com/api/teams')
+			.then(response => response.json())
+			.then(json => {
+				console.log(json)
+				app.team = json
+				app.teams = json[0]
+			})	
 		let app = new Vue({
 			el: '#app',
 			data: {
-				users :[],
-				person:{
-					id:0,
-					name:'..loading',
-					username:'..loading',
-					email:'..loading',
-					website:'..loading',
-					company:{
-						name : '..loading',
-					}
-				}	
-			}
+				team :[{
+					"team_id": "..loading",
+					"rating": 0,
+					"wins": 0,
+					"losses": 0,
+					"last_match_time": 1597595815,
+					"name": "..loading",
+					"tag": "..loading"
+				}],
+				teams :[{
+					"team_id": "..loading",
+					"rating": 0,
+					"wins": 0,
+					"losses": 0,
+					"last_match_time": 1597595815,
+					"name": "..loading",
+					"tag": "..loading"
+				}],
+				//person:{
+				//	id:0,
+				//	name:'..loading',
+				//	username:'..loading',
+				//	email:'..loading',
+				//	website:'..loading',
+				//	company:{
+				//		name : '..loading',
+				//	}
+			}	
 		})
 
 	</script>
