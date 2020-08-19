@@ -9,47 +9,53 @@
 <body>
 	<div id="app">
 		About
-		<h3>Team_id :{{team.team_id}}</h3>
-		<h3>Name :{{team.name}}</h3>
-		<h3>Tag :{{team.tag}}</h3>
-		<h3>Rating :{{team.rating}}</h3>
-		<h3>Wins :{{team.wins}}</h3>
-		<h3>Losses :{{team.losses}}</h3>
+		<h3>gameID :{{games.gameID}}</h3>
+		<h3>internalName :{{games.internalName}}</h3>
+		<h3>storeID :{{games.storeID}}</h3>
+		<h3>steamAppID :{{games.steamAppID}}</h3>
+		<h3>salePrice :{{games.salePrice}}</h3>
+		<h3>normalPrice :{{games.normalPrice}}</h3>
+		<h3>dealRating :{{games.dealRating}}</h3>
 
-		User
-		<h2 v-for="t in team">{{t.name}}</h2>
+		InternalName
+		<h2 v-for="g in game" :data-id="g.gameID" onclick="viewBio(this)">{{g.title}}</h2>
 		
 	</div>
 	
 
 	<script>
-		fetch('https://api.opendota.com/api/teams')
+		fetch("https://www.cheapshark.com/api/1.0/deals")
 			.then(response => response.json())
 			.then(json => {
 				console.log(json)
-				app.team = json
-				app.teams = json[0]
+				app.game = json
+				app.games = json[0]
 			})	
+		
 		let app = new Vue({
 			el: '#app',
 			data: {
-				team :[{
-					"team_id": "..loading",
-					"rating": 0,
-					"wins": 0,
-					"losses": 0,
-					"last_match_time": 1597595815,
-					"name": "..loading",
-					"tag": "..loading"
+				game :[{
+					"internalName": "..Loading..",
+    				"title": "..Loading..",
+					"storeID": "..Loading..",
+					"gameID": "1",
+					"salePrice": "..Loading..",
+					"normalPrice": "..Loading..",
+					"steamRatingText": "..Loading..",
+					"steamAppID": "..Loading..",
+					"dealRating": "..Loading..",
 				}],
-				teams :[{
-					"team_id": "..loading",
-					"rating": 0,
-					"wins": 0,
-					"losses": 0,
-					"last_match_time": 1597595815,
-					"name": "..loading",
-					"tag": "..loading"
+				games :[{
+					"internalName": "..Loading..",
+    				"title": "..Loading..",
+					"storeID": "..Loading..",
+					"gameID": "2",
+					"salePrice": "..Loading..",
+					"normalPrice": "..Loading..",
+					"steamRatingText": "..Loading..",
+					"steamAppID": "..Loading..",
+					"dealRating": "..Loading..",
 				}],
 				//person:{
 				//	id:0,
@@ -63,6 +69,13 @@
 			}	
 		})
 
+		function viewBio(h2){
+			let gameID = h2.dataset.gameID
+			app.games = app.game[gameID-1]
+			console.log(gameID)
+		}
+
+		
 	</script>
 </body>
 </html>
