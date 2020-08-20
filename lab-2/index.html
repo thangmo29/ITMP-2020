@@ -9,71 +9,59 @@
 <body>
 	<div id="app">
 		About
-		<h3>gameID :{{games.gameID}}</h3>
-		<h3>internalName :{{games.internalName}}</h3>
-		<h3>storeID :{{games.storeID}}</h3>
-		<h3>steamAppID :{{games.steamAppID}}</h3>
-		<h3>salePrice :{{games.salePrice}}</h3>
-		<h3>normalPrice :{{games.normalPrice}}</h3>
-		<h3>dealRating :{{games.dealRating}}</h3>
 
-		InternalName
-		<h2 v-for="g in game" :data-id="g.gameID" onclick="viewBio(this)">{{g.title}}</h2>
+		<h3>Team_id :{{characher.id}}</h3>
+		<h3>Name :{{characher.name}}</h3>
+		<h3>Tag :{{characher.intro}}</h3>
+		<h3>Rating :{{characher.role}}</h3>
+		<h3>Wins :{{characher.specialty}}</h3>
+
+
+		Name of Characher
+		<h2 v-for="c in show_characher" :data-id="c.id" @click="viewBio(c)">{{c.name}}</h2>
 		
 	</div>
 	
 
 	<script>
-		fetch("https://www.cheapshark.com/api/1.0/deals")
+		fetch('https://raw.githubusercontent.com/rensamatar/rov-api/master/api/hero_bak.json')
 			.then(response => response.json())
 			.then(json => {
 				console.log(json)
-				app.game = json
-				app.games = json[0]
+				app.show_characher = json
+				app.characher = json[0]
 			})	
 		
 		let app = new Vue({
 			el: '#app',
+			methods: {
+				viewBio: function(user){
+					this.characher = user
+				}
+			},
 			data: {
-				game :[{
-					"internalName": "..Loading..",
-    				"title": "..Loading..",
-					"storeID": "..Loading..",
-					"gameID": "1",
-					"salePrice": "..Loading..",
-					"normalPrice": "..Loading..",
-					"steamRatingText": "..Loading..",
-					"steamAppID": "..Loading..",
-					"dealRating": "..Loading..",
-				}],
-				games :[{
-					"internalName": "..Loading..",
-    				"title": "..Loading..",
-					"storeID": "..Loading..",
-					"gameID": "2",
-					"salePrice": "..Loading..",
-					"normalPrice": "..Loading..",
-					"steamRatingText": "..Loading..",
-					"steamAppID": "..Loading..",
-					"dealRating": "..Loading..",
-				}],
-				//person:{
-				//	id:0,
-				//	name:'..loading',
-				//	username:'..loading',
-				//	email:'..loading',
-				//	website:'..loading',
-				//	company:{
-				//		name : '..loading',
-				//	}
-			}	
+				characher :{
+					"id": 0,
+					"name": "..loading..",
+					"intro": "..loading..",
+					"role": "..loading..",
+					"specialty": "..loading..",
+				},
+				show_characher :[{
+					"id": 1,
+					"name": "..loading..",
+					"intro": "..loading..",
+					"role": "..loading..",
+					"specialty": "..loading..",
+				}]
+			}
 		})
 
-		function viewBio(h2){
-			let gameID = h2.dataset.gameID
-			app.games = app.game[gameID-1]
-			console.log(gameID)
-		}
+		//function viewBio(h2){
+		//	let id = h2.dataset.id; 
+		//	app.characher = app.show_characher[id]
+		//	console.log(show_id)
+		//}
 
 		
 	</script>
