@@ -15,10 +15,15 @@
 		<h3>Tag :{{characher.intro}}</h3>
 		<h3>Rating :{{characher.role}}</h3>
 		<h3>Wins :{{characher.specialty}}</h3>
-
+		<button @click="isthisgood">เขาเป็นตัวละครที่ดีหรือไม่</button>
+		<h2>{{yesno.answer}}</h2>
+		<img :src="yesno.image">
+		
 
 		Name of Characher
-		<h2 v-for="c in show_characher" :data-id="c.id" @click="viewBio(c)">{{c.name}}</h2>
+		<h2 v-for="c in show_characher" :data-id="c.id" @click="viewBio(c)">
+			<img :src="`https://picsum.photos/id/3${c.id}/200/300`">
+			{{c.name}}</h2>
 		
 	</div>
 	
@@ -37,9 +42,27 @@
 			methods: {
 				viewBio: function(user){
 					this.characher = user
+					this.yesno = {
+						"answer":"อยากรู้ คลิกเลย",
+						"forced":false,
+						"image":""
+					}
+				},
+				isthisgood: function(){
+					fetch('https://yesno.wtf/api')
+					.then(response => response.json())
+					.then(json => {
+						console.log(json)
+						app.yesno = json
+					})	
 				}
 			},
 			data: {
+				yesno: {
+					"answer":"อยากรู้ คลิกเลย",
+					"forced":false,
+					"image":""
+				},
 				characher :{
 					"id": 0,
 					"name": "..loading..",
