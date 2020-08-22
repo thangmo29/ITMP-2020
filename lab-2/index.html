@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>The Members - ITKMITL Multimedia Programming 2563</title>
+	<title>Characher of Rov - ITKMITL Multimedia Programming 2563</title>
 
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="lab.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,300&display=swap" rel="stylesheet">
 </head>
 <body>
-	<div id="app">
-		About
-
-		<h3>Team_id :{{characher.id}}</h3>
-		<h3>Name :{{characher.name}}</h3>
-		<h3>Tag :{{characher.intro}}</h3>
-		<h3>Rating :{{characher.role}}</h3>
-		<h3>Wins :{{characher.specialty}}</h3>
-		<button @click="isthisgood">เขาเป็นตัวละครที่ดีหรือไม่</button>
-		<h2>{{yesno.answer}}</h2>
-		<img :src="yesno.image">
-		
-
-		Name of Characher
-		<h2 v-for="c in show_characher" :data-id="c.id" @click="viewBio(c)">
-			<img :src="`https://picsum.photos/id/3${c.id}/200/300`">
-			{{c.name}}</h2>
-		
+	<div id="app" class="container">
+		<div class="row">
+			<div class="show">
+				<div class="col-sm-13">
+				<br>
+				<h2>Name of Characher</h2> 
+				<h5 v-for="c in show_characher" :data-id="c.id" @click="viewBio(c)">
+					<img :src="`https://picsum.photos/id/1${c.id}/200/200`">
+					{{c.name}}</h5>
+				</div>
+			</div>
+			<div class="col-sm-8">
+				<div class="about">
+					<br>
+					<h1>About</h1>
+					<p><b>Id :</b>{{characher.id}}</p>
+					<p><b>Name :</b>{{characher.name}}</p>
+					<p><b>Intro :</b>{{characher.intro}}</p>
+					<p><b>Role :</b>{{characher.role}}</p>
+					<p><b>Specialty :</b>{{characher.specialty}}</p>
+					
+					<button @click="isthisgood">เขาเป็นตัวละครที่ดีหรือไม่</button>
+					<h5>{{yesno.answer}}</h5>
+					<br>
+					<img :src="yesno.image">
+				</div>
+			</div>		
+		</div>
 	</div>
 	
 
