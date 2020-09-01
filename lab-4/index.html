@@ -59,6 +59,7 @@
 						if (e == true){
 							this.score += 1
 							this.time += 1
+							this.row += 1
 							this.correct()
 						}else{
 							this.score -= 1
@@ -77,7 +78,6 @@
 				},
 				correct: function(){
 					//เข้าด่านต่อไป
-					this.row = rand(2,8)
 					this.pick = rand(1,this.row*this.row)//เเก้ให้ถูก
 					this.h = rand(0,350)
 					this.l = rand(10,60)
