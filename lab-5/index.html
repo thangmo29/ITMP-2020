@@ -19,9 +19,9 @@
 				<div class="box _path" 
 				v-for="i in 14" 
 				:data-pst="i"></div>
-				<div class="box _toggle" data-pst="10" data-isrightarrow="1"></div>
+				<div class="box _toggle" data-pst="10" data-isrightarrow="isRightArrow"></div>
 
-				<div class="box _fruit" v-for="f in fruits" :data-pst="f.pst"></div>
+				<div class="box _fruit" v-for="f in fruits" :data-pst="f.pst" :data-type="f.type"></div>
 
 				<div class="box _origin"></div>
 				<div class="box _12" data-pst="12"></div>
@@ -30,11 +30,11 @@
 			</main>
 		</section>
 		<section id="canvas_footer">
-			<div v-if="play" class="btn" id="toggle">
+			<div v-if="play" class="btn" id="toggle" @click="swap()">
 				Toggle
 			</div>
 			<div v-if="!play" class="btn" id="endgame">
-				Ene Game
+				End Game
 			</div>
 		</section>
 	</div>
@@ -62,17 +62,36 @@
 					
 				]
 			},
-			method:{},
+			method:{
+				swap: function(){
+					if (this.isRightArrow == 1){
+						this.isRightArrow = 0
+					}else{
+						this.isRightArrow = 1
+					}
+				},
+			},
 			computed:{},
-			watch:{
-				turn: function(x){
+			watch:{ //ดูเจาะจงค่าเเต่ละตัว
+				turn: function(){
 					let count = this.fruits.length
 					for (let f in this.fruits){
+						if (this.fruits[f].pst == 10){
+							if (isRightArrow == 1){
+								this.fruits[f].step = 3
+							}else{
+								this.fruits[f].step = 1
+							}
+						}
+						
+						
+						//run
 						let run = this.fruits[f].run
 						if (run){
-							this.fruits[f].pst = this.fruits[f].pst + 1
+							this.fruits[f].pst = this.fruits[f].pst + this.fruits[f].step
 						}
-						console.log()
+						
+						console.log(this.fruits[f].pst)
 					}
 					
 				}
