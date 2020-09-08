@@ -81,15 +81,13 @@
 					for (let f in this.fruits){
 						//toggle
 						if (this.fruits[f].pst == 10){
-							if (isRightArrow == 1){
+							if (this.isRightArrow == 1){
 								this.fruits[f].step = 3
 							}else{
 								this.fruits[f].step = 1
 							}
 						}
-
 						
-
 						//score
 						if (this.fruits[f].pst == 11 && this.fruits[f].type == 11){
 							this.score++;
@@ -101,13 +99,14 @@
 						if (this.fruits[f].pst == 12 || this.fruits[f].pst == 16){
 							this.fruits[f].run = false;
 						}
-						
+					
 						//run 
 						let run = this.fruits[f].run
 						if (run){
 							this.fruits[f].pst = this.fruits[f].pst + this.fruits[f].step
-						}
+						}			
 					}
+					
 					//creat fruits
 					let spaw = rand(0,1)
 					if (spaw == 1){
@@ -119,9 +118,7 @@
 							this.fruits.push({id:newFruitId, type:13, pst:1, run:true, step:1})
 						}
 						newfruit++;
-					}
-					
-					
+					}	
 				}
 			}
 		})
