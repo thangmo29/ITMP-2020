@@ -33,7 +33,7 @@
 			<div v-if="play" class="btn" id="toggle" @click="swap()">
 				Toggle
 			</div>
-			<div v-if="!play" class="btn" id="endgame">
+			<div v-if="!play" class="btn" id="endgame" onclick="recover()">
 				End Game
 			</div>
 		</section>
@@ -99,7 +99,16 @@
 						if (this.fruits[f].pst == 12 || this.fruits[f].pst == 16){
 							this.fruits[f].run = false;
 						}
-					
+						
+						//game over
+						if (this.fruits[f].pst == 11 && this.fruits[f].type == 13){
+							clearInterval(playing)
+							this.play = false
+						}else if (this.fruits[f].pst == 13 && this.fruits[f].type == 11){
+							clearInterval(playing)
+							this.play = false
+						}
+
 						//run 
 						let run = this.fruits[f].run
 						if (run){
@@ -117,7 +126,7 @@
 						}else{
 							this.fruits.push({id:newFruitId, type:13, pst:1, run:true, step:1})
 						}
-						newfruit++;
+						newFruitId++;
 					}	
 				}
 			}
@@ -126,6 +135,10 @@
 		let playing = setInterval(function(){
 			app.turn++
 		},speed)
+		
+		function recover(){
+			window.location.reload();
+		}
 	</script>
 </body>
 </html>
