@@ -62,20 +62,24 @@
 					
 				]
 			},
-			method:{
+			methods:{
 				swap: function(){
 					if (this.isRightArrow == 1){
-						this.isRightArrow = 0
+						this.isRightArrow = 0		
 					}else{
 						this.isRightArrow = 1
 					}
+				
 				},
 			},
+
 			computed:{},
+
 			watch:{ //ดูเจาะจงค่าเเต่ละตัว
 				turn: function(){
 					let count = this.fruits.length
 					for (let f in this.fruits){
+						//toggle
 						if (this.fruits[f].pst == 10){
 							if (isRightArrow == 1){
 								this.fruits[f].step = 3
@@ -83,15 +87,19 @@
 								this.fruits[f].step = 1
 							}
 						}
+
+						//stop
+						if (this.fruits[f].pst == 12 || this.fruits[f].pst == 16){
+							this.fruits[f].run = false
+						}
+
 						
-						
-						//run
+						//run 
 						let run = this.fruits[f].run
 						if (run){
 							this.fruits[f].pst = this.fruits[f].pst + this.fruits[f].step
 						}
 						
-						console.log(this.fruits[f].pst)
 					}
 					
 				}
