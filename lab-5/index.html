@@ -19,7 +19,7 @@
 				<div class="box _path" 
 				v-for="i in 14" 
 				:data-pst="i"></div>
-				<div class="box _toggle" data-pst="10" data-isrightarrow="isRightArrow"></div>
+				<div class="box _toggle" data-pst="10" :data-isrightarrow="isRightArrow"></div>
 
 				<div class="box _fruit" v-for="f in fruits" :data-pst="f.pst" :data-type="f.type"></div>
 
@@ -63,13 +63,13 @@
 				]
 			},
 			methods:{
-				swap: function(){
+				swap : function(){
 					if (this.isRightArrow == 1){
 						this.isRightArrow = 0		
 					}else{
 						this.isRightArrow = 1
 					}
-				
+					console.log(this.isRightArrow)
 				},
 			},
 
@@ -88,19 +88,39 @@
 							}
 						}
 
-						//stop
-						if (this.fruits[f].pst == 12 || this.fruits[f].pst == 16){
-							this.fruits[f].run = false
+						
+
+						//score
+						if (this.fruits[f].pst == 11 && this.fruits[f].type == 11){
+							this.score++;
+						}else if (this.fruits[f].pst == 13 && this.fruits[f].type == 13){
+							this.score++;
 						}
 
+						//stop
+						if (this.fruits[f].pst == 12 || this.fruits[f].pst == 16){
+							this.fruits[f].run = false;
+						}
 						
 						//run 
 						let run = this.fruits[f].run
 						if (run){
 							this.fruits[f].pst = this.fruits[f].pst + this.fruits[f].step
 						}
-						
 					}
+					//creat fruits
+					let spaw = rand(0,1)
+					if (spaw == 1){
+						newfruit = rand(0,1)
+						newFruitId = 3
+						if (newFruitId == 1){
+							this.fruits.push({id:newFruitId, type:11, pst:1, run:true, step:1})
+						}else{
+							this.fruits.push({id:newFruitId, type:13, pst:1, run:true, step:1})
+						}
+						newfruit++;
+					}
+					
 					
 				}
 			}
