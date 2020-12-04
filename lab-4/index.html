@@ -34,7 +34,7 @@
 	</div>
 
 	<script>
-		let picklight = "15%" //เลือกว่ารอบนี้ อันพิเศษจะมีความสว่าง 20%(เจาะจงตัวที่เลือก)
+		let picklight = "75%" //เลือกว่ารอบนี้ อันพิเศษจะมีความสว่าง 20%(เจาะจงตัวที่เลือก)
 		//document.registerElement('a-dot') //ให้ vue รู้จัก a-dot
 
 		function rand(start,stop){//สร้างฟังก์ชัน random ไว้ใช้
@@ -50,7 +50,7 @@
 				time:20, //เวลาเริ่มต้น
 				score:0, //คะแนนเริ่มต้น
 				pick:1, //หมายเลขวงกลมที่จะสีแตกต่างจากก้อนอื่นๆ
-				l:40,//ความสว่างของสีทั่วไปในรอบนี้
+				l:60,//ความสว่างของสีทั่วไปในรอบนี้
 			},
 			methods: {
 				check: function(e){//ทำให้เช็คก่อนว่าถูกมั้ย
@@ -59,7 +59,6 @@
 						if (e == true){
 							this.score += 1
 							this.time += 1
-							this.row += 1
 							this.correct()
 						}else{
 							this.score -= 1
@@ -75,6 +74,7 @@
 				},
 				correct: function(){
 					//เข้าด่านต่อไป
+					this.row = rand(3,6)
 					this.pick = rand(1,this.row*this.row)//เเก้ให้ถูก
 					this.h = rand(0,350)
 					this.l = rand(10,60)
