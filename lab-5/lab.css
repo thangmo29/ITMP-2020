@@ -72,15 +72,21 @@ div.box{
 	opacity: .5;
 }
 .box._toggle[data-isrightarrow="0"]{ 
-	background-color: red; 
+	background-color: red;
+	
 }
 
 
 .box._12{
 	background-color: red;
+	background-image: url('conan2.png');
+	background-size: 95%;
+	
 }
 .box._16{
 	background-color: yellow;
+	background-image: url('aka.png');
+	background-size: 100%;
 }
 .box._path{
 	background-color: black;
@@ -97,12 +103,16 @@ div.box{
 }
 .box._fruit{
 	background-color: yellow;
+	background-image: url('aka.png');
+	background-size: 100%;
 	border-radius: 100%;
 	border: 3px solid #fffc;
 	transform: scale(.6);
 }
 .box._fruit[data-type="11"]{
 	background-color: red;
+	background-image: url('conan2.png');
+	background-size: 95%;
 }
 
 .box[data-pst="0"]{
